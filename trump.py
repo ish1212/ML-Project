@@ -53,7 +53,7 @@ for word_i in txt.split(' '):
 
 
 
-from libs import charrnn, nb_utils
+from libs import charrnn
 
 
 ckpt_name = './trump.ckpt'
