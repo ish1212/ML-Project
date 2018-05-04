@@ -38,8 +38,8 @@ len(txt), len(vocab)
 
 from collections import OrderedDict
 
-encoder = OrderedDict(zip(vocab, range(len(vocab))))
-decoder = OrderedDict(zip(range(len(vocab)), vocab))
+encoder = dict(zip(vocab, range(len(vocab))))
+decoder = dict(zip(range(len(vocab)), vocab))
 
 
 words = set(txt.split(' '))
@@ -69,7 +69,7 @@ with tf.Session(graph=g) as sess:
                                 gradient_clip=10.0)
     sess.run(tf.global_variables_initializer())
     saver = tf.train.Saver()
-    if os.path.exists(ckpt_name):
+    if not os.path.exists(ckpt_name):
         # saver = tf.train.import_meta_graph(ckpt_name)
         # saver.restore(sess,tf.train.latest_checkpoint('models'))
         saver.restore(sess, ckpt_name)
