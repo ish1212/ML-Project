@@ -2,7 +2,7 @@ import sys
 import os
 import numpy as np
 import tensorflow as tf
-
+import datetime
 
 with open('trump.txt', 'r', encoding='utf-8') as fp:
     txt = fp.read()
@@ -126,7 +126,7 @@ with tf.name_scope('optimizer'):
 
 
 tf.summary.scalar('Loss', loss)
-tf.summary.scalar('Accuracy', accuracy)
+#tf.summary.scalar('Accuracy', accuracy)
 merged = tf.summary.merge_all()
 logdir = "tensorboard/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + "/"
 
@@ -165,7 +165,7 @@ while True:
         preds = [decoder[p_i] for p_i in p]
         print("".join(preds).split('\n'))
 
-        save_path = saver.save(sess, "models/pretrained_lstm.ckpt", global_step=i)
+        save_path = saver.save(sess, "models/pretrained_lstm.ckpt", global_step=it_i)
         print("saved to %s" % save_path)
 
     it_i += 1

@@ -7,14 +7,11 @@ Parag K. Mital
 Copyright Parag K. Mital, June 2016.
 """
 from __future__ import print_function
-import matplotlib.pyplot as plt
 import tensorflow as tf
 import urllib
 import numpy as np
 import zipfile
 import os
-from scipy.io import wavfile
-from scipy.misc import imsave
 
 def download(path):
     """Use urllib to download a file.
