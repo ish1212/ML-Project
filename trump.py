@@ -56,7 +56,7 @@ for word_i in txt.split(' '):
 from libs import charrnn
 
 
-ckpt_name = 'models/pretrained_lstm.ckpt-13000.meta' #'./trump.ckpt'
+ckpt_name = 'models/pretrained_lstm.ckpt' #'./trump.ckpt'
 g = tf.Graph()
 n_layers = 2
 n_cells = 512
