@@ -18,7 +18,7 @@ txt = "\n".join([txt_i.strip()
                  for txt_i in txt.replace('\t', '').split('\n')
                  if len(txt_i)])
 
-
+'''
 import re
 
 strip_special_chars  = re.compile("[^A-Za-z0-9 ]+")
@@ -31,7 +31,7 @@ def cleanSentences(string):
 text=""
 for i, char in enumerate(txt):
     text+=cleanSentences(char)
-
+'''
 
 vocab = list(set(txt))
 len(txt), len(vocab)
@@ -56,9 +56,9 @@ for word_i in txt.split(' '):
 from libs import charrnn
 
 
-ckpt_name = './trump.ckpt'
+ckpt_name = 'models/pretrained_lstm.ckpt-15000.ckpt' #'./trump.ckpt'
 g = tf.Graph()
-n_layers = 3
+n_layers = 2
 n_cells = 512
 with tf.Session(graph=g) as sess:
     model = charrnn.build_model(txt=txt,
