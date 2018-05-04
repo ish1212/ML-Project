@@ -70,9 +70,9 @@ with tf.Session(graph=g) as sess:
     sess.run(tf.global_variables_initializer())
     saver = tf.train.Saver()
     if os.path.exists(ckpt_name):
-        saver = tf.train.import_meta_graph(ckpt_name)
-        saver.restore(sess,tf.train.latest_checkpoint('models'))
-        #saver.restore(sess, ckpt_name)
+        # saver = tf.train.import_meta_graph(ckpt_name)
+        # saver.restore(sess,tf.train.latest_checkpoint('models'))
+        saver.restore(sess, ckpt_name)
         print("Model restored.")
     else:
         print("wtf?")
