@@ -56,27 +56,27 @@ for word_i in txt.split(' '):
 from libs import charrnn
 
 
-ckpt_name = './pretrained_lstm.ckpt' #'./trump.ckpt'
-g = tf.Graph()
-n_layers = 2
-n_cells = 512
-with tf.Session(graph=g) as sess:
-    # model = charrnn.build_model(txt=txt,
-    #                             batch_size=1,
-    #                             sequence_length=1,
-    #                             n_layers=n_layers,
-    #                             n_cells=n_cells,
-    #                             gradient_clip=10.0)
-    sess.run(tf.global_variables_initializer())
-    saver = tf.train.Saver()
-    if not os.path.exists(ckpt_name):
-        # saver = tf.train.import_meta_graph(ckpt_name)
-        # saver.restore(sess,tf.train.latest_checkpoint('models'))
-        saver.restore(sess, ckpt_name)
-        print("Model restored.")
-    else:
-        print("wtf?")
-
+# ckpt_name = './pretrained_lstm.ckpt' #'./trump.ckpt'
+# g = tf.Graph()
+# n_layers = 2
+# n_cells = 512
+# with tf.Session(graph=g) as sess:
+#     # model = charrnn.build_model(txt=txt,
+#     #                             batch_size=1,
+#     #                             sequence_length=1,
+#     #                             n_layers=n_layers,
+#     #                             n_cells=n_cells,
+#     #                             gradient_clip=10.0)
+#     sess.run(tf.global_variables_initializer())
+#     saver = tf.train.Saver()
+#     if not os.path.exists(ckpt_name):
+#         # saver = tf.train.import_meta_graph(ckpt_name)
+#         # saver.restore(sess,tf.train.latest_checkpoint('models'))
+#         saver.restore(sess, ckpt_name)
+#         print("Model restored.")
+#     else:
+#         print("wtf?")
+#
 
 
 n_iterations = 500
