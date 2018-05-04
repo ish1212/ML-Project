@@ -4,7 +4,7 @@ import numpy as np
 import tensorflow as tf
 
 
-with open('alice.txt', 'r', encoding='utf-8') as fp:
+with open('trump.txt', 'r', encoding='utf-8') as fp:
     txt = fp.read()
 
 tf.reset_default_graph()
