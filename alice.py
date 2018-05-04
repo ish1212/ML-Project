@@ -4,7 +4,7 @@ import numpy as np
 import tensorflow as tf
 
 
-with open('alice.txt', 'r', encoding='utf-8') as fp:
+with open('trump.txt', 'r', encoding='utf-8') as fp:
     txt = fp.read()
 
 tf.reset_default_graph()
@@ -125,10 +125,20 @@ with tf.name_scope('optimizer'):
     updates = optimizer.apply_gradients(gradients)
 
 
+tf.summary.scalar('Loss', loss)
+tf.summary.scalar('Accuracy', accuracy)
+merged = tf.summary.merge_all()
+logdir = "tensorboard/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + "/"
 
-sess = tf.Session()
-init = tf.global_variables_initializer()
-sess.run(init)
+
+# sess = tf.Session()
+with tf.Session() as sess:
+    writer = tf.summary.FileWriter(logdir, sess.graph)
+
+sess = tf.InteractiveSession()
+saver = tf.train.Saver()
+
+sess.run(tf.global_variables_initializer())
 
 cursor = 0
 it_i = 0
@@ -155,4 +165,9 @@ while True:
         preds = [decoder[p_i] for p_i in p]
         print("".join(preds).split('\n'))
 
+        save_path = saver.save(sess, "models/pretrained_lstm.ckpt", global_step=i)
+        print("saved to %s" % save_path)
+
     it_i += 1
+
+writer.close()
