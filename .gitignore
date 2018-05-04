@@ -1,3 +1,4 @@
 models/
 tensorboard/
 *.pyc
+pretrained_lstm.*
