@@ -81,6 +81,7 @@ with tf.Session(graph=g) as sess:
 
 n_iterations = 500
 
+# save
 # # Inference: Keeping Track of the State
 #
 # curr_states  = None
