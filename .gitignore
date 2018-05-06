@@ -4,7 +4,6 @@ tensorboard/
 pretrained_lstm.*
 idsMatrix2.npy
 packages/
-quotes_all.csv
 wordVectors.npy
 wordsList.npy
 
