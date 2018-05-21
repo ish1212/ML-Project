@@ -18,12 +18,12 @@ import datetime
 
 # In[2]:
 
-final_topics = np.load('final_topics.npy')
+final_topics = np.load('final_topics2.npy')
 
 
 # In[3]:
 
-ids = np.load('idsMatrix2.npy')
+ids = np.load('idsMatrix22.npy')
 
 
 # In[4]:
@@ -169,7 +169,7 @@ for i in range(iterations):
     
     nextBatch, nextBatchLabels = getTrainBatch();
     sess.run(optimizer, {input_data: nextBatch, labels: nextBatchLabels})
-   
+    print(i)
     if (i % 50 == 0):
         summary = sess.run(merged, {input_data: nextBatch, labels: nextBatchLabels})
         writer.add_summary(summary, i)
