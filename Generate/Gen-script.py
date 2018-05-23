@@ -5,10 +5,11 @@
 
 from __future__ import print_function
 from keras.callbacks import LambdaCallback
+from keras.callbacks import ModelCheckpoint
 from keras.models import Sequential
-from keras.layers import Dense, Activation
+from keras.layers import Dense, Activation, Dropout
 from keras.layers import LSTM
-from keras.optimizers import RMSprop
+from keras.optimizers import RMSprop, Adam
 from keras.utils.data_utils import get_file
 import numpy as np
 import random
@@ -59,12 +60,17 @@ y = to_categorical(next_seq)
 # build the model: a single LSTM
 print('Build model...')
 model = Sequential()
-model.add(LSTM(128, input_shape=(X.shape[1], X.shape[2])))
+model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2]), return_sequences=True))
+model.add(Dropout(0.2))
+
+model.add(LSTM(256))
+model.add(Dropout(0.2))
 
 model.add(Dense(y.shape[1]))
 model.add(Activation('softmax'))
 
-optimizer = RMSprop(lr=0.01)
+#optimizer = RMSprop(lr=0.01)
+optimizer = Adam(lr=0.001, beta_1=0.9, beta_2=0.999)
 model.compile(loss='categorical_crossentropy', optimizer=optimizer)
 
 
@@ -72,6 +78,7 @@ model.compile(loss='categorical_crossentropy', optimizer=optimizer)
 
 def sample(preds, temperature=1.0):
     # helper function to sample an index from a probability array
+    preds = preds[1:]
     preds = np.asarray(preds).astype('float64')
     preds = np.log(preds) / temperature
     exp_preds = np.exp(preds)
@@ -124,10 +131,14 @@ def on_epoch_end(epoch, logs):
 
 print_callback = LambdaCallback(on_epoch_end=on_epoch_end)
 
+
+filepath="weights-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
+checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
+
 model.fit(X, y,
-          batch_size=128,
-          epochs=60,
-          callbacks=[print_callback])
+          batch_size=32,
+          epochs=100,
+          callbacks=[print_callback, checkpoint])
 
 
 # In[ ]:

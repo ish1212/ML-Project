@@ -8,3 +8,5 @@ wordVectors.npy
 wordsList.npy
 
 .ipynb_checkpoints/
+Generate/weights-improvement-*
+Generate/output
