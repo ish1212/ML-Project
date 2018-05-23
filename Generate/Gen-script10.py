@@ -29,7 +29,7 @@ int_to_word = int_to_word.item()
 word_to_int = word_to_int.item()
 
 # cut the text in semi-redundant sequences of maxlen characters
-maxlen = 4
+maxlen = 10
 step = 1
 seq = []
 next_seq = []
