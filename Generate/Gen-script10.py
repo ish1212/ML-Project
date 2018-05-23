@@ -98,6 +98,7 @@ text = np.ndarray.flatten(seq)
 
 # In[10]:
 
+
 def on_epoch_end(epoch, logs):
     # Function invoked at end of each epoch. Prints generated text.
     print()
@@ -110,7 +111,7 @@ def on_epoch_end(epoch, logs):
         generated = ''
         sentence = text[start_index: start_index + maxlen]
         print(sentence)
-        generated.join([str(wordlist[[int_to_word[value]]]) for value in sentence])
+        generated.join([str([int_to_word[value]]).join(' ') for value in sentence])
         print('----- Generating with seed: %s'%sentence)
 #         sys.stdout.write(generated)
 
@@ -120,7 +121,7 @@ def on_epoch_end(epoch, logs):
 
             preds = model.predict(x_pred, verbose=0)[0]
             next_index = sample(preds, diversity)
-            next_char = wordlist[int_to_word[next_index]]
+            next_char = int_to_word[next_index]
 
             generated.join(str(next_char))
             sentence = np.append(sentence[1:],next_index)
@@ -129,7 +130,6 @@ def on_epoch_end(epoch, logs):
             sys.stdout.write(" ")
             sys.stdout.flush()
         print()
-
 
 # In[11]:
 
