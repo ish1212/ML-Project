@@ -18,6 +18,8 @@ import io
 
 
 ids = np.load('quote_matrix10.npy')
+ids = ids[:1000,:]
+
 
 int_to_word = np.load('int_to_word10.npy')
 word_to_int = np.load('word_to_int10.npy')
