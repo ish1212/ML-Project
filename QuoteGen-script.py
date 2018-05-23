@@ -169,7 +169,11 @@ for i in range(iterations):
     
     nextBatch, nextBatchLabels = getTrainBatch();
     sess.run(optimizer, {input_data: nextBatch, labels: nextBatchLabels})
+<<<<<<< HEAD
     print(i)
+=======
+   
+>>>>>>> ac9602d32e2c394556d16c28796af36193a1cf83
     if (i % 50 == 0):
         summary = sess.run(merged, {input_data: nextBatch, labels: nextBatchLabels})
         writer.add_summary(summary, i)

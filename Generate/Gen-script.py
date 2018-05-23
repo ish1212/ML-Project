@@ -60,6 +60,7 @@ y = to_categorical(next_seq)
 # build the model: a single LSTM
 print('Build model...')
 model = Sequential()
+
 model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2]), return_sequences=True))
 model.add(Dropout(0.2))
 
