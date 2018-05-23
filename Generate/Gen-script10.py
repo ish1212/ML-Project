@@ -93,7 +93,7 @@ def sample(preds, temperature=1.0):
 
 # In[9]:
 
-text = np.ndarray.flatten(sequences)
+text = np.ndarray.flatten(seq)
 
 
 # In[10]:

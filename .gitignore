@@ -10,3 +10,4 @@ wordsList.npy
 .ipynb_checkpoints/
 Generate/weights-improvement-*
 Generate/output
+trained_weights/
