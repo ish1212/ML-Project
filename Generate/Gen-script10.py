@@ -16,6 +16,7 @@ import random
 import sys
 import io
 
+np.random.seed()
 
 ids = np.load('quote_matrix10.npy')
 ids = ids[:1000,:]
@@ -28,7 +29,7 @@ int_to_word = int_to_word.item()
 word_to_int = word_to_int.item()
 
 # cut the text in semi-redundant sequences of maxlen characters
-maxlen = 1
+maxlen = 4
 step = 1
 seq = []
 next_seq = []
