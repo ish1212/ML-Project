@@ -114,7 +114,8 @@ def sample(preds, temperature=1.0):
     # exp_preds = np.exp(preds)
     # preds = exp_preds / np.sum(exp_preds)
     # probas = np.random.multinomial(1, preds, 1)
-    return np.argmax(preds)
+    # return np.argmax(preds)
+    return preds
 
 
 
