@@ -95,7 +95,9 @@ def sample(preds, temperature=1.0):
 # In[9]:
 text = []
 for quote in ids:
-    text.append(quote)
+    for word in quote:
+        if not word==0:
+            text.append(word)
 
 text = np.ndarray.flatten(np.asarray(text))
 
