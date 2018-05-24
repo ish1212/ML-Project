@@ -81,7 +81,7 @@ print('Build model...')
 model = Sequential()
 
 model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2]),
-               return_sequences=True,
+               #return_sequences=True,
                # activation=relu_advanced
                ))
 
