@@ -123,7 +123,7 @@ def on_epoch_end(epoch, logs):
         print(sentence)
         generated.join([str([int_to_word[value]]).join(' ') for value in sentence])
         print('----- Generating with seed: %s'%[int_to_word[word] for word in sentence])
-#         sys.stdout.write(generated)
+        sys.stdout.write(generated)
 
         for i in range(400):
             x_pred = np.reshape(sentence,(1, maxlen, 1))
