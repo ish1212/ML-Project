@@ -26,8 +26,20 @@ word_to_int = np.load('Generate/word_to_int10.npy')
 int_to_word = int_to_word.item()
 word_to_int = word_to_int.item()
 
-# cut the text in semi-redundant sequences of maxlen characters
-maxlen = 10
+int_to_word[0] = '0'
+
+# In[]:
+text = []
+for quote in ids:
+    for word in quote:
+        if not word==0:
+            text.append(word)
+
+text = np.ndarray.flatten(np.asarray(text))
+
+
+# In[]: cut the text in semi-redundant sequences of maxlen characters
+maxlen = 4
 step = 1
 seq = []
 next_seq = []
@@ -92,15 +104,6 @@ def sample(preds, temperature=1.0):
     # return np.argmax(probas)
     return np.argmax(preds)
 
-
-# In[9]:
-text = []
-for quote in ids:
-    for word in quote:
-        if not word==0:
-            text.append(word)
-
-text = np.ndarray.flatten(np.asarray(text))
 
 
 # In[10]:
