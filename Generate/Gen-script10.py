@@ -10,6 +10,7 @@ from keras.models import Sequential
 from keras.layers import Dense, Activation, Dropout
 from keras.layers import LSTM
 from keras.optimizers import Adam
+from keras import backend as K
 import numpy as np
 import random
 import sys
@@ -54,7 +55,7 @@ print('nb sequences:', len(seq))
 seq = np.asarray(seq)
 next_seq = np.asarray(next_seq)
 
-max_word = np.asarray(text.max())
+max_word = np.asarray(len(int_to_word))
 
 
 # In[5]:
@@ -68,7 +69,7 @@ X = np.reshape(seq, (len(seq), maxlen, 1))
 # normalize
 X = X / max_word
 # one hot encode the output variable
-y = to_categorical(next_seq, num_classes= len(int_to_word))
+y = to_categorical(next_seq, num_classes= max_word)
 
 
 # In[7]:
@@ -81,7 +82,7 @@ model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2]),
                #return_sequences=True
                 activation='relu'))
 
-# model.add(Activation('relu'))
+
 model.add(Dropout(0.2))
 # model.add(LSTM(256))
 # model.add(Dropout(0.2))
