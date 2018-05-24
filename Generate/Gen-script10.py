@@ -129,7 +129,7 @@ def on_epoch_end(epoch, logs):
             x_pred = x_pred / max_word
 
             preds = model.predict(x_pred, verbose=0)
-            print(preds)
+            print(preds.shape)
             preds = preds[0]
             next_index = sample(preds, diversity)
             next_char = int_to_word[next_index]
