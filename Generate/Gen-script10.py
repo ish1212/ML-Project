@@ -146,6 +146,7 @@ def on_epoch_end(epoch, logs):
             preds = preds[0]
             # print(preds.shape)
             next_index = round(sample(preds, diversity))
+            print(next_index)
             next_char = int_to_word[next_index]
 
             generated.join(str(next_char))
