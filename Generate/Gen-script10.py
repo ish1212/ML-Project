@@ -57,6 +57,8 @@ next_seq = np.asarray(next_seq)
 
 max_word = np.asarray(len(int_to_word))
 
+def relu_advanced(x):
+    return K.relu(x, max_value=max_word)
 
 # In[5]:
 
@@ -80,7 +82,7 @@ model = Sequential()
 
 model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2]),
                #return_sequences=True
-                activation='relu'))
+                activation=relu_advanced))
 
 
 model.add(Dropout(0.2))
