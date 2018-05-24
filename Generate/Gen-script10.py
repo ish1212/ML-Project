@@ -95,7 +95,7 @@ model.add(Activation('softmax'))
 
 #optimizer = RMSprop(lr=0.01)
 optimizer = Adam(lr=0.001, beta_1=0.9, beta_2=0.999)
-model.compile(loss='mse', optimizer=optimizer) #'categorical_crossentropy'
+model.compile(loss='categorical_crossentropy', optimizer=optimizer)
 
 
 # In[8]:
