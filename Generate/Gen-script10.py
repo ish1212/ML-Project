@@ -80,7 +80,7 @@ y = to_categorical(next_seq, num_classes= max_word)
 print('Build model...')
 model = Sequential()
 
-model.add(LSTM(256, input_shape=X.shape[1],
+model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2]),
                #return_sequences=True,
                # activation=relu_advanced
                ))
