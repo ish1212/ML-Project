@@ -71,8 +71,8 @@ X = np.reshape(seq, (len(seq), maxlen, 1))
 # normalize
 X = X / max_word
 # one hot encode the output variable
-y = to_categorical(next_seq, num_classes= max_word)
-
+# y = to_categorical(next_seq, num_classes= max_word)
+y = np.reshape(next_seq,(next_seq.shape[0],1)) / max_word
 
 # In[7]:
 
@@ -88,7 +88,9 @@ model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2]),
 
 # model.add(Dropout(0.2))
 # model.add(LSTM(1024))
-model.add(LSTM(y.shape[1]))
+model.add(LSTM(y.shape[1]
+               ,activation='sigmoid'
+               ))
 
 # model.add(Dropout(0.2))
 
@@ -99,7 +101,7 @@ model.add(Activation('softmax'))
 
 #optimizer = RMSprop(lr=0.01)
 optimizer = Adam(lr=0.001, beta_1=0.9, beta_2=0.999)
-model.compile(loss='categorical_crossentropy', optimizer=optimizer)
+model.compile(loss='sparse_categorical_crossentropy', optimizer=optimizer)
 
 
 # In[8]:
