@@ -43,14 +43,14 @@ maxlen = 4
 step = 1
 seq = []
 next_seq = []
-quote_len = ids.shape[1]
+quote_len = text.shape[0]
 
-for quote in ids:
-    for i in range(0, quote_len - maxlen, step):
-        if quote[i] >0:
-            seq.append(quote[i: i + maxlen])
-            next_seq.append(quote[i + maxlen])
+for i in range(0, quote_len - maxlen, step):
+    seq.append(text[i: i + maxlen])
+    next_seq.append(text[i + maxlen])
+
 print('nb sequences:', len(seq))
+
 seq = np.asarray(seq)
 next_seq = np.asarray(next_seq)
 
