@@ -19,8 +19,8 @@ import io
 np.random.seed()
 
 ids = np.load('quote_matrix10.npy')
-ids = ids[:1000,:]
-
+#ids = ids[:1000,:]
+ids = ids[1000:1999,:]
 
 int_to_word = np.load('int_to_word10.npy')
 word_to_int = np.load('word_to_int10.npy')
@@ -68,10 +68,10 @@ print('Build model...')
 model = Sequential()
 
 model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2]), return_sequences=True))
-model.add(Dropout(0.2))
+#model.add(Dropout(0.2))
 
 model.add(LSTM(256))
-model.add(Dropout(0.2))
+#model.add(Dropout(0.2))
 
 model.add(Dense(y.shape[1]))
 model.add(Activation('softmax'))
@@ -144,7 +144,7 @@ checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only
 
 model.fit(X, y,
           batch_size=32,
-          epochs=100,
+          epochs=1000,
           callbacks=[print_callback, checkpoint])
 
 
