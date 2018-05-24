@@ -17,12 +17,12 @@ import sys
 
 np.random.seed()
 
-ids = np.load('/home/krohak/Documents/ML/ML-Project/Generate/quote_matrix10.npy')
+ids = np.load('Generate/quote_matrix10.npy')
 #ids = ids[:1000,:]
 ids = ids[1000:1999,:]
 
-int_to_word = np.load('/home/krohak/Documents/ML/ML-Project/Generate/int_to_word10.npy')
-word_to_int = np.load('/home/krohak/Documents/ML/ML-Project/Generate/word_to_int10.npy')
+int_to_word = np.load('Generate/int_to_word10.npy')
+word_to_int = np.load('Generate/word_to_int10.npy')
 
 int_to_word = int_to_word.item()
 word_to_int = word_to_int.item()
@@ -82,11 +82,11 @@ model = Sequential()
 
 model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2]),
                #return_sequences=True,
-               activation='sigmoid'
+               #activation='sigmoid'
                ))
 
 
-# model.add(Dropout(0.2))
+model.add(Dropout(0.2))
 # model.add(LSTM(1024))
 # model.add(LSTM(y.shape[1]
 #                ,activation='sigmoid'
@@ -130,7 +130,7 @@ def on_epoch_end(epoch, logs):
     print('----- Generating text after Epoch: %d' % epoch)
 
     start_index = random.randint(0, len(text) - maxlen - 1)
-    for diversity in [0.2, 0.5, 1.0, 1.2]:
+    for diversity in [0.2]: # 0.5, 1.0, 1.2
         print('----- diversity:', diversity)
 
         generated = ''
@@ -138,9 +138,9 @@ def on_epoch_end(epoch, logs):
         print(sentence)
         generated.join([str([int_to_word[value]]).join(' ') for value in sentence])
         print('----- Generating with seed: %s'%[int_to_word[word] for word in sentence])
-        sys.stdout.write(generated)
+        #sys.stdout.write(generated)
 
-        for i in range(15):
+        for i in range(20):
             x_pred = np.reshape(sentence,(1, maxlen, 1))
             x_pred = x_pred / max_word
 
@@ -148,7 +148,7 @@ def on_epoch_end(epoch, logs):
             preds = preds[0]
             # print(preds.shape)
             next_index = sample(preds, diversity)
-            print(next_index)
+            #print(next_index)
             next_char = int_to_word[next_index]
 
             generated.join(str(next_char))
@@ -168,7 +168,7 @@ filepath="Generate/weights-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
 checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
 
 model.fit(X, y,
-          batch_size=256,
+          batch_size=64,
           epochs=1000,
           validation_split=0.05,
           callbacks=[print_callback, checkpoint])
