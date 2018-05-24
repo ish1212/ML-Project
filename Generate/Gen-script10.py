@@ -66,7 +66,7 @@ from keras.utils import to_categorical
 # reshape X to be [samples, time steps, features]
 X = np.reshape(seq, (len(seq), maxlen, 1))
 # normalize
-X = X / float(next_seq.max())
+X = X / max_word
 # one hot encode the output variable
 y = to_categorical(next_seq, num_classes= len(int_to_word))
 
@@ -79,7 +79,6 @@ model = Sequential()
 
 model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2]), return_sequences=True))
 model.add(Dropout(0.2))
-
 model.add(LSTM(256))
 model.add(Dropout(0.2))
 
