@@ -140,7 +140,7 @@ def on_epoch_end(epoch, logs):
 print_callback = LambdaCallback(on_epoch_end=on_epoch_end)
 
 
-filepath="weights-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
+filepath="Generate/weights-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
 checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
 
 model.fit(X, y,
