@@ -125,7 +125,7 @@ def on_epoch_end(epoch, logs):
         print('----- Generating with seed: %s'%[int_to_word[word] for word in sentence])
         sys.stdout.write(generated)
 
-        for i in range(400):
+        for i in range(100):
             x_pred = np.reshape(sentence,(1, maxlen, 1))
             x_pred = x_pred / max_word
 
