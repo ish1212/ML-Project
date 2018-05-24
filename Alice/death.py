@@ -4,19 +4,24 @@
 # In[1]:
 
 # import pandas as pd
-# data = pd.read_csv('death.csv',delimiter=';')
-
 # import re
+
+# data = pd.read_csv('quotes_all.csv',delimiter=';')
+
 # strip_special_chars = re.compile("[^A-Za-z0-9 ]+")
 
 # def cleanSentences(string):
 #     string = string.lower().replace("<br />", " ")
 #     return re.sub(strip_special_chars, "", string.lower())
 
-# with open('death.txt','w') as deathfile:
-#     for quote in data['Quote']:
-#         deathfile.writelines(cleanSentences(quote.lower()) + " ")
+# topics = ['death' , 'family', 'freedom' , 'funny', 'life' , 'love', 'happiness', 'success', 'science', 'politics']
 
+# for topic in topics:
+#     quotes_data = data[data['Topic'].isin([topic])]
+
+#     with open('%s.txt'%topic,'w+') as quotefile:
+#         for quote in quotes_data['Quote']:
+#             quotefile.writelines(cleanSentences(quote.lower()) + " ")
 
 # In[2]:
 import sys
