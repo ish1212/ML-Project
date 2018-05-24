@@ -39,7 +39,7 @@ text = np.ndarray.flatten(np.asarray(text))
 
 
 # In[]: cut the text in semi-redundant sequences of maxlen characters
-maxlen = 4
+maxlen = 1
 step = 1
 seq = []
 next_seq = []
