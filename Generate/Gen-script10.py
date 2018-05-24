@@ -9,21 +9,19 @@ from keras.callbacks import ModelCheckpoint
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Dropout
 from keras.layers import LSTM
-from keras.optimizers import RMSprop, Adam
-from keras.utils.data_utils import get_file
+from keras.optimizers import Adam
 import numpy as np
 import random
 import sys
-import io
 
 np.random.seed()
 
-ids = np.load('quote_matrix10.npy')
+ids = np.load('Generate/quote_matrix10.npy')
 #ids = ids[:1000,:]
 ids = ids[1000:1999,:]
 
-int_to_word = np.load('int_to_word10.npy')
-word_to_int = np.load('word_to_int10.npy')
+int_to_word = np.load('Generate/int_to_word10.npy')
+word_to_int = np.load('Generate/word_to_int10.npy')
 
 int_to_word = int_to_word.item()
 word_to_int = word_to_int.item()
@@ -95,8 +93,11 @@ def sample(preds, temperature=1.0):
 
 
 # In[9]:
+text = []
+for quote in ids:
+    text.append(quote)
 
-text = np.ndarray.flatten(seq)
+text = np.ndarray.flatten(np.asarray(text))
 
 
 # In[10]:
