@@ -146,7 +146,7 @@ filepath="Generate/weights-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
 checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
 
 model.fit(X, y,
-          batch_size=32,
+          batch_size=64,
           epochs=1000,
           callbacks=[print_callback, checkpoint])
 
