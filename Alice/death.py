@@ -14,7 +14,7 @@
 #     string = string.lower().replace("<br />", " ")
 #     return re.sub(strip_special_chars, "", string.lower())
 
-# topics = ['death' , 'family', 'freedom' , 'funny', 'life' , 'love', 'happiness', 'success', 'science', 'politics']
+topics = ['death' , 'family', 'freedom' , 'funny', 'life' , 'love', 'happiness', 'success', 'science', 'politics']
 
 # for topic in topics:
 #     quotes_data = data[data['Topic'].isin([topic])]
