@@ -122,7 +122,7 @@ def on_epoch_end(epoch, logs):
         sentence = text[start_index: start_index + maxlen]
         print(sentence)
         generated.join([str([int_to_word[value]]).join(' ') for value in sentence])
-        print('----- Generating with seed: %s'%sentence)
+        print('----- Generating with seed: %s'%[int_to_word[word] for word in sentence])
 #         sys.stdout.write(generated)
 
         for i in range(400):
