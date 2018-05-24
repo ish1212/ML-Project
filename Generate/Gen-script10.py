@@ -54,7 +54,7 @@ print('nb sequences:', len(seq))
 seq = np.asarray(seq)
 next_seq = np.asarray(next_seq)
 
-max_word = np.asarray(next_seq.max())
+max_word = np.asarray(text.max())
 
 
 # In[5]:
