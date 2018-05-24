@@ -87,7 +87,7 @@ model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2]),
 
 
 # model.add(Dropout(0.2))
-model.add(LSTM(256))
+model.add(LSTM(1024))
 # model.add(Dropout(0.2))
 
 model.add(Dense(y.shape[1]))
@@ -158,7 +158,7 @@ filepath="Generate/weights-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
 checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
 
 model.fit(X, y,
-          batch_size=32,
+          batch_size=128,
           epochs=1000,
           validation_split=0.05,
           callbacks=[print_callback, checkpoint])
