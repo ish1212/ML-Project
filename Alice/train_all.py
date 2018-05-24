@@ -59,7 +59,8 @@ for topic in topics:
     filename = "%s.txt"%topic
     raw_text = open(filename).read()
     raw_text = raw_text.lower()
-
+    n_chars = len(raw_text)
+    
     # prepare the dataset of input to output pairs encoded as integers
     seq_length = 100
     dataX = []
