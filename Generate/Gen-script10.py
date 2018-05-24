@@ -95,7 +95,7 @@ model.add(Activation('softmax'))
 
 #optimizer = RMSprop(lr=0.01)
 optimizer = Adam(lr=0.001, beta_1=0.9, beta_2=0.999)
-model.compile(loss='categorical_crossentropy', optimizer=optimizer)
+model.compile(loss='mse', optimizer=optimizer) #'categorical_crossentropy'
 
 
 # In[8]:
@@ -160,6 +160,7 @@ checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only
 model.fit(X, y,
           batch_size=32,
           epochs=1000,
+          validation_split=0.05,
           callbacks=[print_callback, checkpoint])
 
 # In[ ]:
