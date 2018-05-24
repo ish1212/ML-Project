@@ -115,7 +115,7 @@ def on_epoch_end(epoch, logs):
     print('----- Generating text after Epoch: %d' % epoch)
 
     start_index = random.randint(0, len(text) - maxlen - 1)
-    for diversity in [0.2, 0.5, 1.0, 1.2]:
+    for diversity in [0.2]: # 0.5, 1.0, 1.2
         print('----- diversity:', diversity)
 
         generated = ''
