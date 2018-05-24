@@ -82,7 +82,8 @@ model = Sequential()
 
 model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2]),
                return_sequences=True,
-                activation=relu_advanced))
+               # activation=relu_advanced
+               ))
 
 
 # model.add(Dropout(0.2))
@@ -102,10 +103,10 @@ model.compile(loss='categorical_crossentropy', optimizer=optimizer)
 def sample(preds, temperature=1.0):
     # helper function to sample an index from a probability array
     # preds = preds[1:]
-    preds = np.asarray(preds).astype('float64')
-    preds = np.log(preds) / temperature
-    exp_preds = np.exp(preds)
-    preds = exp_preds / np.sum(exp_preds)
+    # preds = np.asarray(preds).astype('float64')
+    # preds = np.log(preds) / temperature
+    # exp_preds = np.exp(preds)
+    # preds = exp_preds / np.sum(exp_preds)
     # probas = np.random.multinomial(1, preds, 1)
     return np.argmax(preds)
 
