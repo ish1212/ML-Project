@@ -13,3 +13,8 @@ Generate/output
 trained_weights/
 .idea/
 Generate/Untitled.ipynb
+
+Alice/weights-improvement-*
+Alice/'Epoch'
+Alice/output
+
